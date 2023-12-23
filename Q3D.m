@@ -1,15 +1,16 @@
+%% Aerodynamic solver setting
 clear all
 close all
 clc
 
-
-%% Aerodynamic solver setting
-
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     5         0;
-                2  6.048   0     3         0;
-                2+15.552*sind(18.3)  15.552  0  1.2  0];
+                1.9999  6.048   0     3         0;
+                1.9999+15.552*sind(18.3)  15.552  0  1.2  0];
+%                x    y     z   chord(m)    twist angle (deg) 
+% AC.Wing.Geom = [0     0     0     3.5         0;
+%                 0.9  14.5   0     1.4         0];
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
@@ -26,22 +27,21 @@ AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
 AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 
 % Flight Condition
-AC.Aero.V     = 236;            % flight speed (m/s)
-AC.Aero.rho   = 0.3639;         % air density  (kg/m3)
-AC.Aero.alt   = 11000;             % flight altitude (m)
-AC.Aero.Re    = 1.7e7;        % reynolds number (bqased on mean aerodynamic chord)
-AC.Aero.M     = 0.8;           % flight Mach number 
-AC.Aero.CL    = 0.4;          % lift coefficient - comment this line to run the code for given alpha%
-% AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
+AC.Aero.V     = 68;            % flight speed (m/s)
+AC.Aero.rho   = 1.225;         % air density  (kg/m3)
+AC.Aero.alt   = 0;             % flight altitude (m)
+AC.Aero.Re    = 1.14e7;        % reynolds number (bqased on mean aerodynamic chord)
+AC.Aero.M     = 0.2;           % flight Mach number 
+% AC.Aero.CL    = 0.4;          % lift coefficient - comment this line to run the code for given alpha%
+AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 
 %% 
 tic
 
-try 
-Res = Q3D_solver(AC);
-catch error
-    CD = inf;
-end
 
+Res = Q3D_solver(AC);
+
+
+%Change in line 12 the x value for exercise 3
 t=toc
