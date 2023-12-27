@@ -13,7 +13,7 @@ Chord=Res.Wing.chord;
 Chord(15)=AC.Wing.Geom(3,4);
 Y(15)=AC.Wing.Geom(3,2);
 
-%A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*AC.Wing.Geom(3,2))/2;
+A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*AC.Wing.Geom(3,2))/2;
 L=[];
 M=[];
 for i = 1:length(Cl)
@@ -23,8 +23,6 @@ end
 
 X_planf=[AC.Wing.Geom(1,4),AC.Wing.Geom(1,1),AC.Wing.Geom(2,1), AC.Wing.Geom(3,1),AC.Wing.Geom(3,1)+AC.Wing.Geom(3,4),AC.Wing.Geom(2,1)+AC.Wing.Geom(2,4), AC.Wing.Geom(2,1), AC.Wing.Geom(2,1)+AC.Wing.Geom(2,4), AC.Wing.Geom(1,4)];
 Y_planf=[AC.Wing.Geom(1,2),AC.Wing.Geom(1,2),AC.Wing.Geom(2,2), AC.Wing.Geom(3,2),AC.Wing.Geom(3,2), AC.Wing.Geom(2,2), AC.Wing.Geom(2,2), AC.Wing.Geom(2,2), AC.Wing.Geom(1,2)];
-%X_planf=[AC.Wing.Geom(1,4),AC.Wing.Geom(1,1),AC.Wing.Geom(2,1),AC.Wing.Geom(2,1)+AC.Wing.Geom(2,4),AC.Wing.Geom(1,4)];
-%Y_planf=[AC.Wing.Geom(1,2),AC.Wing.Geom(1,2),AC.Wing.Geom(2,2),AC.Wing.Geom(2,2),AC.Wing.Geom(1,2)];
 figure 
 plot (Y_planf,X_planf)
 axis equal
@@ -37,7 +35,6 @@ for j = 1:length(Y)
 fprintf(fid,'%6.4f  %5.4f %5.4f\n',Y(j),L(j),M(j));
 end
 fclose(fid);
-
 
 EMWET IL62
 

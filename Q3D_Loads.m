@@ -6,8 +6,8 @@ clc
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     5         0;
-                1.9999  6.048   0     3         0;
-                1.9999+15.552*sind(18.3)  15.552  0  1.2  0];
+                2.5  6.048   0     3         0;
+                2.5+15.552*sind(18.3)  15.552  0  1.2  0];
 %                x    y     z   chord(m)    twist angle (deg) 
 % AC.Wing.Geom = [0     0     0     3.5         0;
 %                 0.9  14.5   0     1.4         0];
