@@ -16,8 +16,8 @@ LEsweep=atan((cr-cr*TRi)/6.048);
 %                 2.5+15.552*sind(18.3)  15.552  0  1.2  0];
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                cr-cr*TRi+0.6  6.048   0     cr*TRi         0;
-                cr-cr*TRi+0.6+(b-6.048)*sin(LEsweep)  b-6.048  0  cr*TRi*TRo  0];
+                6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+                b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 %                x    y     z   chord(m)    twist angle (deg) 
 % AC.Wing.Geom = [0     0     0     3.5         0;

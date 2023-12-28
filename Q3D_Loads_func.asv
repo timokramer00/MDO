@@ -1,16 +1,13 @@
 %% Aerodynamic solver setting
 function [out]=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
 
-LEsweep=cr
+LEsweep=atan((cr-cr*TRi)/6.048);
 
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                cr-cr*TRi+0.1  6.048   0     cr*TRi         0;
-                cr-cr*TRi+0.1+(b-6.048)*sind(18.3)  b-6.048  0  cr*TRi*TRo  0];
-%                x    y     z   chord(m)    twist angle (deg) 
-% AC.Wing.Geom = [0     0     0     3.5         0;
-%                 0.9  14.5   0     1.4         0];
+                6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+                b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   

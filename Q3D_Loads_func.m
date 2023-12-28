@@ -6,8 +6,8 @@ LEsweep=atan((cr-cr*TRi)/6.048);
 % Wing planform geometry 
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                cr-cr*TRi+0.5  6.048   0     cr*TRi         0;
-                cr-cr*TRi+0.5+(b-6.048)*sin(LEsweep)  b-6.048  0  cr*TRi*TRo  0];
+                6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+                b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
