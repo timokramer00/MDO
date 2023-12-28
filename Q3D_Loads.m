@@ -3,7 +3,7 @@ clear all
 close all
 clc
 
-cr=5;
+cr=7;
 b=21.6;
 TRi=0.6;
 TRo=0.4;
@@ -16,8 +16,9 @@ LEsweep=atan((cr-cr*TRi)/6.048);
 %                 2.5+15.552*sind(18.3)  15.552  0  1.2  0];
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                cr-cr*TRi+0.5  6.048   0     cr*TRi         0;
-                cr-cr*TRi+0.5+(b-6.048)*sin(LEsweep)  b-6.048  0  cr*TRi*TRo  0];
+                cr-cr*TRi+0.6  6.048   0     cr*TRi         0;
+                cr-cr*TRi+0.6+(b-6.048)*sin(LEsweep)  b-6.048  0  cr*TRi*TRo  0];
+
 %                x    y     z   chord(m)    twist angle (deg) 
 % AC.Wing.Geom = [0     0     0     3.5         0;
 %                 0.9  14.5   0     1.4         0];
