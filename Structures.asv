@@ -61,10 +61,10 @@ fclose(fid);
 EMWET IL62
 
 fid = fopen('IL62.weight','r');
-Wstring = strsplit(fgetl(fid),'Wing total weight(kg) ');
-Wstr=str2double(Wstring(2));
+Wstr = strsplit(fgetl(fid),'Wing total weight(kg) ');
 
 fclose(fid);
+disp(Wstr(2))
 
 
 
