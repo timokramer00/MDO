@@ -34,7 +34,7 @@ Y_u = Coor_up(:,2);
 Y_l = Coor_low(:,2);
 
 %Perform mapping of CST method twice, for both upper (Au) and lower (Al) surface 
-%CST parameters; use corresponding upper and lower surface x-ordinates from E553 
+%CST parameters; use corresponding upper and lower surface x-ordinates from Withcomb 
 [Co_CST_up, Co_discard] = D_airfoil2(Au,Al,X_u);
 [Co_discard2, Co_CST_low] = D_airfoil2(Au,Al,X_l);
 
