@@ -1,0 +1,32 @@
+function [out] = objective(x)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+%Design vector x = [b,  ̃cr ,  ̃ψk,r ,  ̃ψt,k,  ̃Au0,  ̃Au1,  ̃Au2,  ̃Au3,
+%̃Au4,  ̃Au5,  ̃Al0, l1,  ̃Al2,  ̃Al3,  ̃Al4,  ̃Al5,  ̃Mcruise,  ̃hcruise,  ̃Wfuel,  ̃L/D,  ̃Wstr,wing]
+b = x(1);
+cr = x(2);
+TRi = x(3);
+TRo = x(4);
+Au0 = x(5);
+Au = x(5);
+Au0 = x(5);
+Au0 = x(5);
+Au0 = x(5);
+Au0 = x(5);
+
+
+
+
+
+
+
+
+
+
+
+
+Wfuel=Performance(x(21),x(20),x(17),x(18),x(19));
+LD=Q3D_Aero(x(1),x(2),x(3),x(4),[x(5),x(6),x(7),x(8),x(9),x(10),x(11),x(12),x(13),x(14),x(15),x(16)],x(18),x(21),x(19));
+
+out=3.16*x(19);
+end

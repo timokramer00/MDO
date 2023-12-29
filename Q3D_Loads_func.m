@@ -44,7 +44,6 @@ tic
 
 
 Res = Q3D_solver(AC);
-disp(AC.Aero.CL)
 
 %Change in line 12 the x value for exercise 3
 t=toc

@@ -3,13 +3,12 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel)
+function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel,Res)
 
 
 %Q3D_Loads
 WAW=90000; %kg
 %[Res]=Q3D_Loads_func(21.6,5,0.6,0.4,[0.2171 0.3450 0.2975 0.2685 0.2893 -0.1299 -0.2388 -0.1635 -0.0476 0.0797],11000,1000,70000);
-[Res]=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,11000,Wstr,Wfuel);
 LEsweep=atan((cr-cr*TRi)/6.048);
 Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
