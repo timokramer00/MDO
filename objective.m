@@ -29,7 +29,6 @@ Wstr_init = x(21);
 
 
 
-
 Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init);
 %LD=Q3D_Aero(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init);
 Res=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);

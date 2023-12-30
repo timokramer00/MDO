@@ -28,7 +28,7 @@ AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 [T,a,P,rho] = atmosisa(hcruise);
 
 nmax=2.5;
-A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*(AC.Wing.Geom(3,2)-AC.Wing.Geom(2,2)))/2;
+A=((AC.Geom(1,4)+AC.Geom(2,4))*AC.Geom(2,2))/2+((AC.Geom(2,4)+AC.Geom(3,4))*(AC.Geom(3,2)-AC.Geom(2,2)))/2;
 AC.Aero.V     = 250.0200;            % flight speed (m/s)
 AC.Aero.rho   = 1.225;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
