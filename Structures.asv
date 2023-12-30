@@ -16,20 +16,28 @@ V=225;
 Cl=Res.Wing.cl;
 Cm=Res.Wing.cm_c4;
 Chord=Res.Wing.chord;
-Chord(15)=Geom(3,4);
-Y(15)=Geom(3,2);
-
+%Chord(15)=Geom(3,4);
+%Y(15)=Geom(3,2);
 A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*Geom(3,2))/2;
 L=[];
 M=[];
 for i = 1:length(Cl)
-    L(i)=0.5*rho*V^2*Cl(i)*(Chord(i)+Chord(i+1))*(Y(i+1)-Y(i))/2;
-    M(i)=0.5*rho*V^2*Cm(i)*Chord(i)*(Chord(i)+Chord(i+1))*(Y(i+1)-Y(i))/2;
+    if i == 1
+        w=Y(i)*2;
+        c1=Geom(1,4);
+        c2=Chord(i)-(c1-Chord(i));
+    end
+    if i~=1
+        w=(Y(i)-w)*2;
+        c1=c2;
+        c2=Chord(i)-(c1-Chord(i));
+    end
+    L(i)=0.5*rho*V^2*Cl(i)*(c1+Chord(i+1))*(w)/2;
+    M(i)=0.5*rho*V^2*Cm(i)*Chord(i)*(Chord(i)+Chord(i+1))*(w)/2;
 end
 
 MTOW=WAW+Wfuel+Wstr;
 MEW=WAW+Wstr;
-
 
 X_planf=[Geom(1,4),Geom(1,1),Geom(2,1), Geom(3,1),Geom(3,1)+Geom(3,4),Geom(2,1)+Geom(2,4), Geom(2,1), Geom(2,1)+Geom(2,4), Geom(1,4)];
 Y_planf=[Geom(1,2),Geom(1,2),Geom(2,2), Geom(3,2),Geom(3,2), Geom(2,2), Geom(2,2),Geom(2,2), Geom(1,2)];
@@ -38,25 +46,33 @@ plot (Y_planf,X_planf)
 axis equal
 axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
 
-Y(15)=[];
+%Y(15)=[];
 
 fid = fopen('IL62.load', 'wt');
 for j = 1:length(Y)
-fprintf(fid,'%6.4f  %5.4f %5.4f\n',Y(j),L(j),M(j));
+fprintf(fid,'%f  %f %f\n',Y(j),L(j),M(j));
 end
 fclose(fid);
 
 
 fid = fopen('IL62.init', 'wt');
 fprintf(fid,'%f %f', MTOW, MEW);
-fprintf(fid, '%f')
-
-
+fprintf(fid, '\n%f', 2.5);
+fprintf(fid, '\n%f %f %i %i',A*2,b*2,3,2);
+fprintf(fid, '\n%i %s',0,'withcomb135');
+fprintf(fid, '\n%i %s',1,'withcomb135');
+fprintf(fid, '\n%f %f %f %f %f %f',Geom(1,4),Geom(1,1),Geom(1,2),Geom(1,3),0.175,0.575);
+fprintf(fid, '\n%f %f %f %f %f %f',Geom(2,4),Geom(2,1),Geom(2,2),Geom(2,3),0.175,0.575);
+fprintf(fid, '\n%f %f %f %f %f %f',Geom(3,4),Geom(3,1),Geom(3,2),Geom(3,3),0.175,0.575);
+fprintf(fid, '\n%f %f',0,0.85);
+fprintf(fid, '\n%i',0);
+fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
+fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
+fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
+fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
+fprintf(fid, '\n%f %f',0.96,0.5);
+fprintf(fid, '\n%i', 1);
 fclose(fid);
-
-
-
-
 
 
 
