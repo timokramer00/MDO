@@ -5,7 +5,7 @@ clear all;
 % This script shows the implementation of the CST airfoil-fitting
 % optimization of MDO Tutorial 1
 
-M = 10  %Number of CST-coefficients in design-vector x
+M = 12  %Number of CST-coefficients in design-vector x
 
 %Define optimization parameters
 x0 = 1*ones(M,1);     %initial value of design vector x(starting vector for search process)

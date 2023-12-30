@@ -1,5 +1,7 @@
 function [out] = objective(x)
 %UNTITLED Summary of this function goes here
+
+%Example input: objective([21.6,5,0.6,0.4,   -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255, 0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811,0.75, 11000, 90000, 17, 1000])
 %   Detailed explanation goes here
 %Design vector x = [b,  ̃cr ,  ̃ψk,r ,  ̃ψt,k,  ̃Au0,  ̃Au1,  ̃Au2,  ̃Au3,
 %̃Au4,  ̃Au5,  ̃Al0, l1,  ̃Al2,  ̃Al3,  ̃Al4,  ̃Al5,  ̃Mcruise,  ̃hcruise,  ̃Wfuel,  ̃L/D,  ̃Wstr,wing]
@@ -29,9 +31,9 @@ Wstr_init = x(21);
 
 
 Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init);
-LD=Q3D_Aero(b,cr,TRI,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init);
-[Res]=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);
-Wstr=Structures(b,cr,TRi,TRo,berncoef,Wstr_init,Wfuel,Res);
+%LD=Q3D_Aero(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init);
+Res=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);
+Wstr=Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],Wstr_init,Wfuel_init,Res);
 
 out=3.16*Wfuel;
 end

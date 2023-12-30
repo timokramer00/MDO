@@ -42,15 +42,14 @@ Y(15)=[];
 
 fid = fopen('IL62.load', 'wt');
 for j = 1:length(Y)
-fprintf(fid,'%f  %f %f\n',Y(j),L(j),M(j));
+fprintf(fid,'%6.4f  %5.4f %5.4f\n',Y(j),L(j),M(j));
 end
 fclose(fid);
 
 
 fid = fopen('IL62.init', 'wt');
 fprintf(fid,'%f %f', MTOW, MEW);
-fprintf(fid, '\n%f', 2.5);
-fprintf(fid, '\n%f %f %i %i',A*2,b*2,3,2);
+fprintf(fid, '%f')
 
 
 fclose(fid);
