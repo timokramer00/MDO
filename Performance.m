@@ -6,13 +6,13 @@ R=9191476;
 Vcruiseref=227.3844;
 hcruiseref=12009.12;
 
-ISA = atmosisa(hcruise);
-Vcruise = ISA(2)*Mcruise;
+[T,a,P,rho] = atmosisa(hcruise);
+Vcruise = a*Mcruise;
 
-eta = exp(-(((Vcruise -Vcruiseref)^2)/(2*70^2))*((hrcruise-hcruiseref)^2/(2*2500^2)));
+eta = exp(-(((Vcruise -Vcruiseref)^2)/(2*70^2))*((hcruise-hcruiseref)^2/(2*2500^2)));
 CT = CTdash/eta;
 
-weightratio = exp((R*CT)/(V*LD));
+weightratio = exp((R*CT)/(Vcruise*LD));
 MTOW = WAW + Wfuel + Wstr;
 
 out = (1-0.938/weightratio)*MTOW;
