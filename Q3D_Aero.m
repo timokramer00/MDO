@@ -1,5 +1,5 @@
 %% Aerodynamic solver setting
-function [Res]=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
+function [Res]=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 
 WAW=90000; %kg
 
@@ -29,11 +29,11 @@ AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 
 nmax=2.5;
 A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*AC.Wing.Geom(3,2))/2;
-AC.Aero.V     = 250.0200;            % flight speed (m/s)
+AC.Aero.V     = a*Mcruise;            % flight speed (m/s)
 AC.Aero.rho   = 1.225;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
 AC.Aero.Re    = 1.14e7;        % reynolds number (bqased on mean aerodynamic chord)
-AC.Aero.M     = AC.Aero.V/a;           % flight Mach number
+AC.Aero.M     = Mcruise;           % flight Mach number
 L=(Wstr+Wfuel+WAW)*nmax;
 AC.Aero.CL    = L/(0.5*AC.Aero.rho*A*AC.Aero.V^2);          % lift coefficient - comment this line to run the code for given alpha%
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 

@@ -1,5 +1,5 @@
 %% Aerodynamic solver setting
-function [Res]=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
+function []=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
 
 WAW=90000; %kg
 
@@ -28,9 +28,9 @@ AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 [T,a,P,rho] = atmosisa(hcruise);
 
 nmax=2.5;
-A=((AC.Geom(1,4)+AC.Geom(2,4))*AC.Geom(2,2))/2+((AC.Geom(2,4)+AC.Geom(3,4))*(AC.Geom(3,2)-AC.Geom(2,2)))/2;
+A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*(AC.Wing.Geom(3,2)-AC.Wing.Geom(2,2)))/2;
 AC.Aero.V     = 250.0200;            % flight speed (m/s)
-AC.Aero.rho   = 1.225;         % air density  (kg/m3)
+AC.Aero.rho   = rho;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
 AC.Aero.Re    = 1.14e7;        % reynolds number (bqased on mean aerodynamic chord)
 AC.Aero.M     = AC.Aero.V/a;           % flight Mach number
@@ -44,6 +44,25 @@ tic
 
 
 Res = Q3D_solver(AC);
+Cl=Res.Wing.cl;
+Cm=Res.Wing.cm_c4;
+Chord=Res.Wing.chord;
+for i = 1:length(Cl)
+    if i == 1
+        w=Y(i)*2;
+        c1=Geom(1,4);
+        c2=Chord(i)-(c1-Chord(i));
+    end
+    if i~=1
+        w=(Y(i)-(Y(i-1)+w/2))*2;
+        c1=c2;
+        c2=Chord(i)-(c1-Chord(i));
+    end
+    
+    %Atest(i)=(c1+c2)*(w)/2;
+    L(i)=0.5*rho*V^2*Cl(i)*(c1+c2)*(w)/2;
+    M(i)=0.5*rho*V^2*Cm(i)*Chord(i)*(c1+c2)*(w)/2;
+end
 
 %Change in line 12 the x value for exercise 3
 t=toc

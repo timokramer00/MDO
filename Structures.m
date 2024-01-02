@@ -3,38 +3,15 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel,Res)
+function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel,L,M,Y)
 %Q3D_Loads
 WAW=90000; %kg
 LEsweep=atan((cr-cr*TRi)/6.048);
 Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
-Y=Res.Wing.Yst;
-rho=1.225;
-V=225;
-Cl=Res.Wing.cl;
-Cm=Res.Wing.cm_c4;
-Chord=Res.Wing.chord;
-A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
-Atest=[];
 
-for i = 1:length(Cl)
-    if i == 1
-        w=Y(i)*2;
-        c1=Geom(1,4);
-        c2=Chord(i)-(c1-Chord(i));
-    end
-    if i~=1
-        w=(Y(i)-(Y(i-1)+w/2))*2;
-        c1=c2;
-        c2=Chord(i)-(c1-Chord(i));
-    end
-    
-    %Atest(i)=(c1+c2)*(w)/2;
-    L(i)=0.5*rho*V^2*Cl(i)*(c1+c2)*(w)/2;
-    M(i)=0.5*rho*V^2*Cm(i)*Chord(i)*(c1+c2)*(w)/2;
-end
+A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
 MTOW=WAW+Wfuel+Wstr;
 MEW=WAW+Wstr;
 

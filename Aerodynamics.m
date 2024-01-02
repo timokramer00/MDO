@@ -1,7 +1,7 @@
-function Cdaw = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
+function Cdaw = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-Res=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel);
+Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
 
 %Q3D_Loads
 WAW=90000; %kg
@@ -10,8 +10,8 @@ Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 Y=Res.Wing.Yst;
-rho=1.225;
-V=225;
+[T,a,P,rho] = atmosisa(hcruise);
+V=a*Mcruise;
 Cl=Res.Wing.cl;
 Cd=Res.Wing.cdi;
 Chord=Res.Wing.chord;
