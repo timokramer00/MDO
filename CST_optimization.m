@@ -40,5 +40,3 @@ Coor = fscanf(fid,'%g %g',[2 Inf]) ;
 fclose(fid) ; 
 
 plot(Coor(1,:),Coor(2,:),'rx')
-disp(Alow_vect)
-disp(Aupp_vect)
