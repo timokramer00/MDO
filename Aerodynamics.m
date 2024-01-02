@@ -1,4 +1,4 @@
-function Cdaw = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
+function LD = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
@@ -16,9 +16,16 @@ Cl=Res.Wing.cl;
 Cd=Res.Wing.cdi;
 Chord=Res.Wing.chord;
 LDref=16;
+A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
 
-for i = 1:length (Cd)
-    Cdaw=(Cl(i)/LDref)-Cd;
+
+
+qref=0.5*0.3104*221.3022^2;
+q=0.5*rho*V^2;
+qratio=q/qref;
+CDaw=0.0114*qratio;
+
+
 
 for i = 1:length(Cl)
     if i == 1
@@ -32,9 +39,14 @@ for i = 1:length(Cl)
         c2=Chord(i)-(c1-Chord(i));
     end
     
-    %Atest(i)=(c1+c2)*(w)/2;
+ 
     L(i)=0.5*rho*V^2*Cl(i)*(c1+c2)*(w)/2;
-    D(i)=0.5*rho*V^2*Cd(i)*Chord(i)*(c1+c2)*(w)/2;
+    D(i)=0.5*rho*V^2*Cd(i)*(c1+c2)*(w)/2;
+    
 end
+CLwing=sum(L)/(0.5*rho*V^2*A);
+CDwing=sum(D)/(0.5*rho*V^2*A);
+%CDaw=(CLwing/LDref)-CDwing;
+LD=(CLwing)/(CDwing+CDaw);
 
-end
+
