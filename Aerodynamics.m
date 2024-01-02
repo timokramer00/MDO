@@ -4,7 +4,7 @@ function LD = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
 
 %Q3D_Loads
-WAW=90000; %kg
+WAW=92985*9.81; %kg
 LEsweep=atan((cr-cr*TRi)/6.048);
 Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;

@@ -1,6 +1,6 @@
 function [out]=Performance(Wstr, LD, Mcruise, hcruise, Wfuel)
 
-WAW=1;
+WAW=90000*9.81;
 CTdash=1.8639*10^-4;
 R=9191476;
 Vcruiseref=227.3844;
