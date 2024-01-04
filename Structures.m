@@ -23,8 +23,7 @@ figure
 plot (Y_planf,X_planf)
 axis equal
 axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
-
-get_airfoil([berncoef(1:6),berncoef(7:12)])
+get_airfoil(berncoef(1:6),berncoef(7:12))
 
 fid = fopen('IL62.load', 'wt');
 for j = 1:length(Y)

@@ -36,7 +36,6 @@ AC.Aero.Re    = 1.14e7;        % reynolds number (bqased on mean aerodynamic cho
 AC.Aero.M     = Mcruise;           % flight Mach number
 L=(Wstr+Wfuel+WAW);
 AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);          % lift coefficient - comment this line to run the code for given alpha%
-disp(AC.Aero.CL)
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 
