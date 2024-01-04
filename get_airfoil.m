@@ -3,11 +3,12 @@ function get_airfoil(Au,Al)
 %   Detailed explanation goes here
 X_vect = linspace(0,1,99)'; 
 [Xtu,Xtl,C,Thu,Thl,Cm] = D_airfoil2(Au,Al,X_vect);
+
+
 Xtu = flipud(Xtu);
 Xtu(length(Xtu),:)=[];
-
-
 X=[Xtu;Xtl];
+
 
 
 fid = fopen('airfoil.dat', 'wt');
