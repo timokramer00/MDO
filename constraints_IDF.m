@@ -82,7 +82,7 @@ V_tank =
 
 %inequality constraints
 c1 = (CLcruise*1.3)/(0.86*cos());
-c2 = (V_fuel)/(V_tank*f_tank)-1;
+c2 = (V_fuel-5)/(V_tank*f_tank)-1;
 c3 = (MTOW/A)/(166694.981/113.724-1);
 
 c = [c1,c2,c3];
