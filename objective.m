@@ -27,12 +27,16 @@ Wfuel_init = x(19);
 LD_init = x(20);
 Wstr_init = x(21);
 
-
+global couplings;
 
 Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init);
 LD=Aerodynamics(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init,Mcruise);
 [L,M,Y]=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);
 Wstr=Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],Wstr_init,Wfuel_init,L,M,Y);
+
+couplings.Wfuel = Wfuel;
+couplings.LD = LD;
+couplings.Wstr = Wstr;
 
 out=3.16*Wfuel;
 end

@@ -2,6 +2,7 @@ function [c,ceq] = constraints_IDF(x)
 global couplings; 
 Wstr = couplings.Wstr;
 LD = couplings.LD;
+Wfuel = couplings.Wfuel;
 
 %calculating the MTOW from performance
 WAW=90000*9.81;
@@ -9,6 +10,9 @@ CTdash=1.8639*10^-4;
 R=9191476;
 Vcruiseref=227.3844;
 hcruiseref=12009.12;
+
+hcruise = x(18);
+Mcruise = x(17);
 
 [T,a,P,rho] = atmosisa(hcruise);
 Vcruise = a*Mcruise;
@@ -29,6 +33,9 @@ cc2 = Wstr - Wstr_c;
 cc3 = MTOW - MTOW_c;
 
 %finding the cruise CL
+
+Res = Q3D_solver(AC);
+
 %Q3D_Loads
 WAW=92985*9.81; %kg
 LEsweep=atan((cr-cr*TRi)/6.048);
@@ -38,7 +45,6 @@ Geom=[0     0     0     cr         0;
 Y=Res.Wing.Yst;
 [T,a,P,rho] = atmosisa(hcruise);
 
-Mcruise = x(17);
 V=a*Mcruise;
 Cl=Res.Wing.cl;
 Cd=Res.Wing.cdi;
@@ -75,7 +81,6 @@ CLcruise = CLwing;
 %tank volume calculations
 rho_fuel = 817.15;
 f_tank = 0.93;
-Wfuel = couplings.Wfuel;
 V_fuel = Wfuel/rho_fuel;
 
 V_tank = 
