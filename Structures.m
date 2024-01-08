@@ -17,12 +17,12 @@ MEW=(WAW+Wstr)/9.81;
 %MTOW=165000*9.81;
 %MEW=94600*9.81;
 
-X_planf=[Geom(1,4),Geom(1,1),Geom(2,1), Geom(3,1),Geom(3,1)+Geom(3,4),Geom(2,1)+Geom(2,4), Geom(2,1), Geom(2,1)+Geom(2,4), Geom(1,4)];
-Y_planf=[Geom(1,2),Geom(1,2),Geom(2,2), Geom(3,2),Geom(3,2), Geom(2,2), Geom(2,2),Geom(2,2), Geom(1,2)];
-figure 
-plot (Y_planf,X_planf)
-axis equal
-axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
+% X_planf=[Geom(1,4),Geom(1,1),Geom(2,1), Geom(3,1),Geom(3,1)+Geom(3,4),Geom(2,1)+Geom(2,4), Geom(2,1), Geom(2,1)+Geom(2,4), Geom(1,4)];
+% Y_planf=[Geom(1,2),Geom(1,2),Geom(2,2), Geom(3,2),Geom(3,2), Geom(2,2), Geom(2,2),Geom(2,2), Geom(1,2)];
+% figure 
+% plot (Y_planf,X_planf)
+% axis equal
+% axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
 get_airfoil(berncoef(1:6),berncoef(7:12))
 
 fid = fopen('IL62.load', 'wt');
@@ -48,7 +48,7 @@ fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
 fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
 fprintf(fid, '\n%e %f %e %e',70e9, 2800, 2.95e008, 2.95e008);
 fprintf(fid, '\n%f %f',0.96,0.5);
-fprintf(fid, '\n%i', 1);
+fprintf(fid, '\n%i', 0);
 fclose(fid);
 
 

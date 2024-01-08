@@ -17,21 +17,21 @@ Au3 = x(8)*x0(8);
 Au4 = x(9)*x0(9);
 Au5 = x(10)*x0(10);
 Al0 = x(11)*x0(11);
-Al1 = x(12)*x0(12);
-Al2 = x(13)*x0(13);
-Al3 = x(14)*x0(14);
-Al4 = x(15)*x0(15);
-Al5 = x(16)*x0(16);
-Mcruise = x(17)*x0(17);
-hcruise = x(18)*x0(18);
-Wfuel_init = x(19)*x0(19);
-LD_init = x(20)*x0(20);
-Wstr_init = x(21)*x0(21);
+Al1 = x(12)/x0(12);
+Al2 = x(13)/x0(13);
+Al3 = x(14)/x0(14);
+Al4 = x(15)/x0(15);
+Al5 = x(16)/x0(16);
+Mcruise = x(17)/x0(17);
+hcruise = x(18)/x0(18);
+Wfuel_init = x(19)/x0(19);
+LD_init = x(20)/x0(20);
+Wstr_init = x(21)/x0(21);
 
-Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init)/x0(19);
-LD=Aerodynamics(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init,Mcruise)/x0(20);
+Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init);
+LD=Aerodynamics(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init,Mcruise);
 [L,M,Y]=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);
-Wstr=Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],Wstr_init,Wfuel_init,L,M,Y)/x0(21);
+Wstr=Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],Wstr_init,Wfuel_init,L,M,Y);
 
 
 global couplings;
@@ -40,5 +40,5 @@ vararg = {Wfuel,Wfuel_init,LD,LD_init,Wstr,Wstr_init};
 couplings.Wfuel = Wfuel;
 couplings.LD = LD;
 couplings.Wstr = Wstr;
-f=Wfuel;
+f=3.16*Wfuel;
 end

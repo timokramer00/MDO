@@ -40,8 +40,6 @@ AC.Aero.CL    = 2.4;
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 
-%% 
-tic
 
 
 Res = Q3D_solver(AC);
@@ -65,6 +63,3 @@ for i = 1:length(Cl)
     L(i)=0.5*rho*AC.Aero.V^2*Cl(i)*(c1+c2)*(w)/2;
     M(i)=0.5*rho*AC.Aero.V^2*Cm(i)*Chord(i)*(c1+c2)*(w)/2;
 end
-
-%Change in line 12 the x value for exercise 3
-t=toc

@@ -40,11 +40,4 @@ AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);          % lift coefficient
 
 
 %% 
-tic
-
-
 Res = Q3D_solver(AC);
-
-
-%Change in line 12 the x value for exercise 3
-t=toc
