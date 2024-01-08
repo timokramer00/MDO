@@ -1,4 +1,4 @@
-function [out] = objective(x)
+function [f,vararg] = objective(x)
 %UNTITLED Summary of this function goes here
 
 %Reference aircraft input: objective([21.6,5,0.6,0.4,   0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811, -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255,0.75, 12009.12, 70400*9.81, 16, 3680.9816*9.81])
@@ -27,18 +27,11 @@ Wfuel_init = x(19);
 LD_init = x(20);
 Wstr_init = x(21);
 
-global couplings;
-
 Wfuel=Performance(Wstr_init,LD_init,Mcruise,hcruise,Wfuel_init);
 LD=Aerodynamics(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init,Mcruise);
 [L,M,Y]=Q3D_Loads_func(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],hcruise,Wstr_init,Wfuel_init);
 Wstr=Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],Wstr_init,Wfuel_init,L,M,Y);
 
-couplings.Wfuel = Wfuel;
-couplings.LD = LD;
-couplings.Wstr = Wstr;
-
-out=3.16*Wfuel;
 
 global couplings;
     
@@ -46,4 +39,5 @@ vararg = {Wfuel,Wfuel_init,LD,LD_init,Wstr,Wstr_init};
 couplings.Wfuel = Wfuel;
 couplings.LD = LD;
 couplings.Wstr = Wstr;
+f=3.16*Wfuel;
 end
