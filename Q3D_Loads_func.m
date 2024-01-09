@@ -51,6 +51,7 @@ Y=Res.Wing.Yst;
 Cl=Res.Wing.cl;
 Cm=Res.Wing.cm_c4;
 Chord=Res.Wing.chord;
+M=zeros(1,length(Cl));
 for i = 1:length(Cl)
     if i == 1
         w=Y(i)*2;

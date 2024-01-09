@@ -62,8 +62,6 @@ V_fuel = Wfuel/rho_fuel;
 
 V_tank = getvolume(cr,TRi,TRo,b);
 
-LEsweepd=rad2deg(LEsweep);
-
 x=cr-cr*TRi;
 y=0.25*cr*TRi;
 z=0.25*cr;
