@@ -38,8 +38,6 @@ AC.Aero.V     = 250.0200;            % flight speed (m/s)
 AC.Aero.rho   = rho;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
 AC.Aero.Re    = (AC.Aero.V*MAC)/nu;        % reynolds number (bqased on mean aerodynamic chord)
-disp(AC.Aero.Re)
-disp(MAC)
 AC.Aero.M     = AC.Aero.V/a;           % flight Mach number
 L=(Wstr+Wfuel+WAW)*nmax;
 AC.Aero.CL    = L/(0.5*AC.Aero.rho*A*2*AC.Aero.V^2);          % lift coefficient - comment this line to run the code for given alpha%d

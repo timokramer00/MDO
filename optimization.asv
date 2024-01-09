@@ -19,13 +19,13 @@ options = optimset('fmincon');
 options.Display         = 'iter-detailed';
 options.Algorithm       = 'sqp';
 options.FunValCheck     = 'off';
-options.DiffMinChange   = 0.03;         % Minimum change while gradient searching
+options.DiffMinChange   = 1e-2;         % Minimum change while gradient searching
 options.DiffMaxChange   = 1e-1;         % Maximum change while gradient searching
 options.TolCon          = 5e-4;         % Maximum difference between two subsequent constraint vectors [c and ceq]
 options.TolFun          = 5e-4;         % Maximum difference between two subsequent objective value
 options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
-options.PlotFcns         = ['optimplotfval','optimplotconstrviolation'];
-options.FinDiffType     ='central';
+options.PlotFcn         = ['optimplotfval','optimplotconstrviolation'];
+
 options.MaxIter         = 60;           % Maximum iterations
 
 tic;

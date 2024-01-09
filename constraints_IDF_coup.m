@@ -59,9 +59,8 @@ CLcruise=sum(L)/(0.5*rho*V^2*A);
 rho_fuel = 817.15;
 f_tank = 0.93;
 V_fuel = Wfuel/rho_fuel;
-Vaux=5;
 
-V_tank = getvolume(cr,TRi,TRo,b)+Vaux;
+V_tank = getvolume(cr,TRi,TRo,b);
 
 LEsweepd=rad2deg(LEsweep);
 
