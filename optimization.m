@@ -32,4 +32,4 @@ tic;
 t=toc;
 
 %optionally, call the objective again with the optimum values for x
-%[f,vararg] = Optim_IDF(x);
+[f,vararg] = objective(x);

@@ -19,8 +19,8 @@ chordtankmax=Geom(2,4)-(Geom(2,4)-Geom(3,4))*frac;
 chordkink=Geom(2,4);
 chordroot=Geom(1,4);
 
-tankub=0.6;
-tanklb=0.15;
+tankub=0.575;
+tanklb=0.175;
 j=1;
 crefout=zeros(1,length(Coor)-98);
 crefin=zeros(1,length(Coor)-98);

@@ -25,7 +25,7 @@ AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
 AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 
 % Flight Condition
-[T,a , P, rho, nu] = atmosisa(hcruise);
+[T,a,P,rho,nu] = atmosisa(hcruise);
 
 MACin=cr*(2/3)*((1+TRi+TRi^2)/(1+TRi));
 MACout=cr*TRi*(2/3)*((1+TRo+TRo^2)/(1+TRo));
@@ -37,9 +37,7 @@ A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4
 AC.Aero.V     = 250.0200;            % flight speed (m/s)
 AC.Aero.rho   = rho;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
-AC.Aero.Re    = (AC.Aero.V*MAC)/nu;        % reynolds number (bqased on mean aerodynamic chord)
-disp(AC.Aero.Re)
-disp(MAC)
+AC.Aero.Re    = AC;        % reynolds number (bqased on mean aerodynamic chord)
 AC.Aero.M     = AC.Aero.V/a;           % flight Mach number
 L=(Wstr+Wfuel+WAW)*nmax;
 AC.Aero.CL    = L/(0.5*AC.Aero.rho*A*2*AC.Aero.V^2);          % lift coefficient - comment this line to run the code for given alpha%d
