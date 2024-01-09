@@ -1,7 +1,5 @@
-cr=5;
-TRi=0.6;
-TRo=0.4;
-b=21.6;
+function[Vtank] = getvolume(cr,TRi,TRo,b)
+
 LEsweep=atan((cr-cr*TRi)/6.048);
 Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
@@ -21,8 +19,8 @@ chordtankmax=Geom(2,4)-(Geom(2,4)-Geom(3,4))*frac;
 chordkink=Geom(2,4);
 chordroot=Geom(1,4);
 
-tankub=0.575;
-tanklb=0.175;
+tankub=0.6;
+tanklb=0.15;
 j=1;
 crefout=zeros(1,length(Coor)-98);
 crefin=zeros(1,length(Coor)-98);
@@ -45,7 +43,7 @@ for i = ceil(length(Coor)/2):(length(Coor))
 end
 
 for i = 1:length(Coor)
-    if (0.175 <= Coor(1,i))&&(Coor(1,i) <= 0.575)
+    if (tanklb <= Coor(1,i))&&(Coor(1,i) <= tankub)
     tankcoor(1,j)=Coor(1,i);
     tankcoor(2,j)=Coor(2,i);
     j=j+1;
@@ -53,7 +51,7 @@ for i = 1:length(Coor)
 end
 j=1;
 for i = ceil(length(Coor)/2):length(Coor)
-    if (0.175 <= Coor(1,i))&&(Coor(1,i) <= 0.575)
+    if (tanklb <= Coor(1,i))&&(Coor(1,i) <= tankub)
     douttank(j)=dout(i-98);
     dintank(j)=din(i-98);
     j=j+1;
@@ -71,22 +69,22 @@ Vin=zeros(1,floor(length(tankcoor)/2));
 
 
 for i = 1:(floor(length(tankcoor)/2))
-    h1=tankcoor(2,i)+abs(tankcoor(2,(end+1-i)));
-    h2=tankcoor(2,i+1)+abs(tankcoor(2,(end-i)));
+    h1=abs(tankcoor(2,i))+abs(tankcoor(2,(end+1-i)));
+    h2=abs(tankcoor(2,i+1))+abs(tankcoor(2,(end-i)));
     h=(h1+h2)/2;
-    l=tankcoor(1,i)-tankcoor(1,(i+1));
+    l=abs(tankcoor(1,i)-tankcoor(1,(i+1)));
     A3(i)=(h*chordtankmax)*(l*chordtankmax);
     A2(i)=(h*chordkink)*(l*chordkink);
     A1(i)=(h*chordroot)*(l*chordroot);
-    Vout(i)=(douttank(i)/3)*(A3(i)+A2(i)+sqrt(A3(i)*A2(i)));
-    Vin(i)=(dintank(i)/3)*(A3(i)+A2(i)+sqrt(A3(i)*A2(i)));
+    Aout=(A3(i)+A2(i))/2;
+    Ain=(A2(i)+A1(i))/2;
+    Vout(i)=douttank(i)*Aout;
+    Vin(i)=dintank(i)*Ain;
 end
 
-n=(length(tankcoor)-1);
-disp(sum(A1))
-disp(sum(A2))
-disp(sum(A3))
-V=((n*bout)/12)*(sum(A2)^2+(sum(A2)*sum(A3))+(sum(A3)^2))*(1/tand(pi/n))+((n*6.048)/12)*(sum(A1)^2+(sum(A1)*sum(A2))+(sum(A2)^2))*(1/tand(pi/n))
+
+
+Vtank=sum(Vout)+sum(Vin);
 
 
 

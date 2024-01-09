@@ -5,10 +5,16 @@ Wstr = couplings.Wstr;
 LD = couplings.LD;
 Wfuel = couplings.Wfuel;
 
-
+%calculating the MTOW from performance
+WAW=90000*9.81;
+CTdash=1.8639*10^-4;
+R=9191476;
+Vcruiseref=227.3844;
+hcruiseref=12009.12;
 x0 = [21.6,5,0.6,0.4,   0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811, -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255,0.75, 12009.12, 70400*9.81, 16, 3680.9816*9.81];
 
 b = x(1)*x0(1);
+disp(b)
 cr = x(2)*x0(2);
 TRi = x(3)*x0(3);
 TRo = x(4)*x0(4);
@@ -63,15 +69,14 @@ V_tank = getvolume(cr,TRi,TRo,b);
 LEsweepd=rad2deg(LEsweep);
 otherangle=90-LEsweepd;
 x=tand(otherangle)*6.048;
-y=0.25*cr*TRi;
-z=0.25*cr;
-refvalue=(y+x)-z;
-qcsweep = 90 - atand(refvalue/6.048);
+y=0.25*cr*Tri;
+z=0.25*cr
+
 
 
 
 %inequality constraints
-c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep));
+c1 = (CLcruise*1.3)/(0.86*cos(LEsweep));
 c2 = (V_fuel-5)/(V_tank*f_tank)-1;
 c3 = (MTOW/A)/(166694.981/113.724-1);
 
