@@ -1,6 +1,6 @@
 function [c,ceq] = constraints_IDF_coup(x)
 %constraints_IDF_coup([21.6,5,0.6,0.4,   0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811, -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255,0.75, 12009.12, 70400*9.81, 16, 3680.9816*9.81])
-
+%constraints_IDF_coup(ones(1,21))
 
 
 x0 = [21.6,10.32,0.6,0.4,   0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811, -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255,0.75, 12009.12, 70400*9.81, 16, 4350.96*9.81];
@@ -40,7 +40,7 @@ cc3 = Wfuel/Wfuel_init - 1;
 
 %finding the cruise CL
 %Q3D_Loads
-WAW=92985*9.81; %kg
+WAW=92985*9.81; %N
 LEsweep=atan((cr-cr*TRi)/6.048);
 Geom=[0     0     0     cr         0;
       6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
@@ -53,12 +53,12 @@ A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2
 MTOW = WAW + Wfuel + Wstr;
 L = MTOW;
 
-CLcruise=sum(L)/(0.5*rho*V^2*A);
+CLcruise=sum(L)/(0.5*rho*V^2*A*2);
 
 %tank volume calculations
 rho_fuel = 817.15;
 f_tank = 0.93;
-V_fuel = Wfuel/rho_fuel;
+V_fuel = (Wfuel/9.81)/rho_fuel;
 
 V_tank = getvolume(cr,TRi,TRo,b)*2;
 
@@ -71,9 +71,9 @@ qcsweep = atand(refvalue/6.048);
 
 
 %inequality constraints
-c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep));
+c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep))-1;
 c2 = (V_fuel-5)/(V_tank*f_tank)-1;
-c3 = (MTOW/(A*2))/(166694.981/234.703354)-1;
+c3 = ((MTOW/9.831)/(A*2))/(166694.981/234.703354)-1;
 
 c = [c1,c2,c3];
 ceq = [cc1,cc2,cc3];
