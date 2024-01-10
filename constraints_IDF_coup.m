@@ -73,7 +73,7 @@ qcsweep = atand(refvalue/6.048);
 %inequality constraints
 c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep));
 c2 = (V_fuel-5)/(V_tank*f_tank)-1;
-c3 = (MTOW/A)/(166694.981/234.703354)-1;
+c3 = (MTOW/(A*2))/(166694.981/234.703354)-1;
 
 c = [c1,c2,c3];
 ceq = [cc1,cc2,cc3];
