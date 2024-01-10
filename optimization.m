@@ -7,8 +7,8 @@ clc
 x0 = ones(1,21);
 
 %bounds
-lb = [0.6,0.6,0.6,0.6,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.5,0.5,0.5];
-ub = [1.4,1.4,1.4,1.4,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.1,1.1,1.5,1.5,1.5];
+lb = [0.5,0.5,0.5,0.4,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.3,0.3,0.3];
+ub = [1.5,1.5,1.5,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.1,1.1,1.4,1.4,1.4];
 
 
 
@@ -24,7 +24,7 @@ options.DiffMaxChange   = 1e-1;         % Maximum change while gradient searchin
 options.TolCon          = 5e-4;         % Maximum difference between two subsequent constraint vectors [c and ceq]
 options.TolFun          = 5e-4;         % Maximum difference between two subsequent objective value
 options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
-options.PlotFcns         = ['optimplotfval','optimplotconstrviolation'];
+%options.PlotFcns         = {@optimplotfval};
 options.FinDiffType     ='central';
 options.MaxIter         = 60;           % Maximum iterations
 
@@ -33,4 +33,4 @@ tic;
 t=toc;
 
 %optionally, call the objective again with the optimum values for x
-[f,vararg] = objective(x);
+[f,vararg] = objective(x)

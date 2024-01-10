@@ -34,9 +34,9 @@ Wfuel = couplings.Wfuel*x0(19);
 
 %for consistency constraints
 
-cc1 = LD - LD_init;
-cc2 = Wstr - Wstr_init;
-cc3 = Wfuel - Wfuel_init;
+cc1 = LD/LD_init - 1;
+cc2 = Wstr/Wstr_init - 1;
+cc3 = Wfuel/Wfuel_init - 1;
 
 %finding the cruise CL
 %Q3D_Loads
