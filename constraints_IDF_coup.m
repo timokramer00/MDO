@@ -40,7 +40,7 @@ cc3 = Wfuel/Wfuel_init - 1;
 
 %finding the cruise CL
 %Q3D_Loads
-WAW=59752*9.81; %N
+WAW=69534.1*9.81; %N
 LEsweep=atan((cr-cr*TRi)/7);
 Geom=[0     0     0     cr         0;
       7*tan(LEsweep)  7   0     cr*TRi+0.001         0;

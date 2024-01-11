@@ -1,7 +1,7 @@
 %% Aerodynamic solver setting
 function [L,M,Y]=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
 
-WAW=59752*9.81; %N
+WAW=69534.1*9.81; %N
 
 % Wing planform geometry 
 LEsweep=atan((cr-cr*TRi)/7);
