@@ -4,22 +4,23 @@ function [Res]=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 WAW=59752*9.81; %N
 
 % Wing planform geometry 
-LEsweep=atan((cr-cr*TRi)/6.048);
+LEsweep=atan((cr-cr*TRi)/7);
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+                7*tan(LEsweep)  7   0     cr*TRi+0.001         0;
                 b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
             
-            
+kinkfrac=7/b;             
 % Airfoil coefficients input matrix
 %                    | ->     upper curve coeff.                <-|   | ->       lower curve coeff.       <-| 
 AC.Wing.Airfoils   = [berncoef;
+                        berncoef;
                       berncoef];
                   
-AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
+AC.Wing.eta = [0;kinkfrac;1];  % Spanwise location of the airfoil sections
 
 % Viscous vs inviscid
 AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis

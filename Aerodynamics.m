@@ -5,9 +5,9 @@ Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
 
 %Q3D_Loads
 %WAW=92985*9.81; %kg
-LEsweep=atan((cr-cr*TRi)/6.048);
+LEsweep=atan((cr-cr*TRi)/7);
 Geom=[0     0     0     cr         0;
-      6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+      7*tan(LEsweep)  7   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 Y=Res.Wing.Yst;
 [T,a,P,rho] = atmosisa(hcruise);
@@ -23,7 +23,7 @@ A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2
 qref=0.5*0.3104*221.3022^2;
 q=0.5*rho*V^2;
 qratio=q/qref;
-CDaw=0.0248*qratio;
+CDaw=0.0207*qratio;
 
 L=zeros(1,length(Cl));
 D=zeros(1,length(Cl));
@@ -47,7 +47,7 @@ for i = 1:length(Cl)
 end
 CLwing=sum(L)/(0.5*rho*V^2*A);
 CDwing=sum(D)/(0.5*rho*V^2*A);
-%CDaw=(CLwing/LDref)-CDwing;
+%CDaw=(CLwing/LDref)-CDwing
 LD=(CLwing)/(CDwing+CDaw);
 
 

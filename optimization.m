@@ -8,7 +8,7 @@ x0 = ones(1,21);
 
 %bounds
 lb = [0.6,0.6,0.6,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.5,0.5,0.3];
-ub = [1.6,1.5,1.65,2.475,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.1,1.1,1.5,1.5,1.5];
+ub = [1.6,1.5,1.33,2,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.1,1.1,1.5,1.5,1.5];
 
 
 
@@ -26,7 +26,7 @@ options.TolFun          = 5e-4;         % Maximum difference between two subsequ
 options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
 %options.PlotFcns         = {@optimplotfval};
 options.FinDiffType     ='central';
-options.MaxIter         = 60;           % Maximum iterations
+options.MaxIter         = 10;           % Maximum iterations
 
 tic;
 [x,FVAL,EXITFLAG,OUTPUT] = fmincon(@(x) objective(x),x0,[],[],[],[],lb,ub,@(x) constraints_IDF_coup(x),options);
