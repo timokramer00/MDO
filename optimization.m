@@ -8,7 +8,7 @@ x0 = ones(1,21);
 
 %bounds
 lb = [0.6,0.6,0.6,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.5,0.5,0.3];
-ub = [1.6,1.5,1.33,2,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.1,1.1,1.5,1.5,1.5];
+ub = [1.6,1.5,1.33,2.5,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.1,1.1,1.5,1.5,1.5];
 
 
 
@@ -23,7 +23,7 @@ options.DiffMinChange   = 1e-2;         % Minimum change while gradient searchin
 options.DiffMaxChange   = 1e-1;         % Maximum change while gradient searching
 options.TolCon          = 5e-4;         % Maximum difference between two subsequent constraint vectors [c and ceq]
 options.TolFun          = 5e-4;         % Maximum difference between two subsequent objective value
-options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
+options.TolX            = 1e-8;         % Maximum difference between two subsequent design vectors
 %options.PlotFcns         = {@optimplotfval};
 options.FinDiffType     ='central';
 options.MaxIter         = 10;           % Maximum iterations
