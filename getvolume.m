@@ -7,7 +7,7 @@ Geom=[0     0     0     cr         0;
 
 
 
-fid= fopen('airfoil.dat','r'); % Filename can be changed as required
+fid= fopen('airfoil1.dat','r'); % Filename can be changed as required
 Coor = fscanf(fid,'%g %g',[2 Inf]) ; 
 fclose(fid) ;
 

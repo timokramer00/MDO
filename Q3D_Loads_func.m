@@ -1,7 +1,7 @@
 %% Aerodynamic solver setting
 function [L,M,Y]=Q3D_Loads_func(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel)
 
-WAW=92985*9.81; %kg
+WAW=59752*9.81; %N
 
 % Wing planform geometry 
 LEsweep=atan((cr-cr*TRi)/6.048);
@@ -12,14 +12,15 @@ AC.Wing.Geom = [0     0     0     cr         0;
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
-            
+kinkfrac=6.048/b;            
             
 % Airfoil coefficients input matrix
 %                    | ->     upper curve coeff.                <-|   | ->       lower curve coeff.       <-| 
 AC.Wing.Airfoils   = [berncoef;
+                        berncoef;
                       berncoef];
                   
-AC.Wing.eta = [0;1];  % Spanwise location of the airfoil sections
+AC.Wing.eta = [0;kinkfrac;1];  % Spanwise location of the airfoil sections
 
 % Viscous vs inviscid
 AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
@@ -64,7 +65,7 @@ for i = 1:length(Cl)
         c2=Chord(i)-(c1-Chord(i));
     end
     
-    %Atest(i)=(c1+c2)*(w)/2;
+    Atest(i)=(c1+c2)*(w)/2;
     L(i)=0.5*rho*AC.Aero.V^2*Cl(i)*(c1+c2)*(w)/2;
     M(i)=0.5*rho*AC.Aero.V^2*Cm(i)*Chord(i)*(c1+c2)*(w)/2;
 end
