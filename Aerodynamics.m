@@ -23,7 +23,7 @@ A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2
 qref=0.5*0.3104*221.3022^2;
 q=0.5*rho*V^2;
 qratio=q/qref;
-CDaw=0.0207*qratio;
+CDaw=0.0187*qratio;
 
 L=zeros(1,length(Cl));
 D=zeros(1,length(Cl));

@@ -5,7 +5,7 @@
 
 function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel,L,M,Y)
 %Q3D_Loads
-WAW=69534.1*9.81; %N
+WAW=75362.9*9.81; %N
 LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
       8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;

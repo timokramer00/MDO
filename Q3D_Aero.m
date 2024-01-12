@@ -1,7 +1,7 @@
 %% Aerodynamic solver setting
 function [Res]=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 
-WAW=69534.1*9.81; %N
+WAW=75362.9*9.81; %N
 
 % Wing planform geometry 
 LEsweep=atan((cr-cr*TRi)/8.64);
@@ -42,7 +42,6 @@ AC.Aero.M     = Mcruise;           % flight Mach number
 MTOW = WAW + Wfuel + Wstr;
 L = sqrt(MTOW*(MTOW-Wfuel));
 AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);% lift coefficient - comment this line to run the code for given alpha%
-disp(AC.Aero.CL)
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 
