@@ -6,15 +6,15 @@
 function [Wstr]=Structures(b,cr,TRi,TRo,berncoef,Wstr,Wfuel,L,M,Y)
 %Q3D_Loads
 WAW=69534.1*9.81; %N
-LEsweep=atan((cr-cr*TRi)/7);
+LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
-      7*tan(LEsweep)  7   0     cr*TRi+0.001         0;
+      8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
 MTOW=(WAW+Wfuel+Wstr)/9.81;
 MEW=(WAW+Wstr)/9.81;
-kinkfrac=7/b;
+kinkfrac=8.64/b;
 Ls=spline(Y,L,[0,b]);
 Ms=spline(Y,M,[0,b]);
 for i =1:length(Y)

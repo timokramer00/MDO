@@ -5,9 +5,9 @@ Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
 
 %Q3D_Loads
 %WAW=92985*9.81; %kg
-LEsweep=atan((cr-cr*TRi)/7);
+LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
-      7*tan(LEsweep)  7   0     cr*TRi+0.001         0;
+      8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 Y=Res.Wing.Yst;
 [T,a,P,rho] = atmosisa(hcruise);

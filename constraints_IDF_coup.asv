@@ -51,7 +51,7 @@ Geom=[0     0     0     cr         0;
 V=a*Mcruise;
 A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
 MTOW = WAW + Wfuel + Wstr;
-L = sqrt(MTOW*(MTOW-Wfuel));
+L = MTOW;
 CLcruise=L/(0.5*rho*V^2*A*2);
 
 %tank volume calculations
@@ -73,6 +73,6 @@ c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep))-1;
 c2 = (V_fuel-5)/(V_tank*f_tank)-1; 
 c3 = ((MTOW/9.81)/(A*2))/(165000/278.987052)-1;
 
-c = [c1,c2,c3];
+c = [c1,c2,c3]
 ceq = [cc1,cc2,cc3];
 end

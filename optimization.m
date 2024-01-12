@@ -26,7 +26,7 @@ options.TolFun          = 5e-4;         % Maximum difference between two subsequ
 options.TolX            = 1e-8;         % Maximum difference between two subsequent design vectors
 %options.PlotFcns         = {@optimplotfval};
 options.FinDiffType     ='central';
-options.MaxIter         = 10;           % Maximum iterations
+options.MaxIter         = 40;           % Maximum iterations
 
 tic;
 [x,FVAL,EXITFLAG,OUTPUT] = fmincon(@(x) objective(x),x0,[],[],[],[],lb,ub,@(x) constraints_IDF_coup(x),options);

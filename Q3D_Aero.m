@@ -4,16 +4,16 @@ function [Res]=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 WAW=69534.1*9.81; %N
 
 % Wing planform geometry 
-LEsweep=atan((cr-cr*TRi)/7);
+LEsweep=atan((cr-cr*TRi)/8.64);
 %                x    y     z   chord(m)    twist angle (deg) 
 AC.Wing.Geom = [0     0     0     cr         0;
-                7*tan(LEsweep)  7   0     cr*TRi+0.001         0;
+                8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
                 b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 % Wing incidence angle (degree)
 AC.Wing.inc  = 0;   
             
-kinkfrac=7/b;             
+kinkfrac=8.64/b;             
 % Airfoil coefficients input matrix
 %                    | ->     upper curve coeff.                <-|   | ->       lower curve coeff.       <-| 
 AC.Wing.Airfoils   = [berncoef;
@@ -39,8 +39,10 @@ AC.Aero.rho   = rho;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
 AC.Aero.Re    = (AC.Aero.V*MAC)/nu;        % reynolds number (bqased on mean aerodynamic chord)
 AC.Aero.M     = Mcruise;           % flight Mach number
-L=(Wstr+Wfuel+WAW);
-AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);          % lift coefficient - comment this line to run the code for given alpha%
+MTOW = WAW + Wfuel + Wstr;
+L = sqrt(MTOW*(MTOW-Wfuel));
+AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);% lift coefficient - comment this line to run the code for given alpha%
+disp(AC.Aero.CL)
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
 

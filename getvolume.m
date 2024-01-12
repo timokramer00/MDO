@@ -1,8 +1,8 @@
 function[Vtank] = getvolume(cr,TRi,TRo,b)
 
-LEsweep=atan((cr-cr*TRi)/6.048);
+LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
-      6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+      8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 
 
@@ -12,8 +12,8 @@ Coor = fscanf(fid,'%g %g',[2 Inf]) ;
 fclose(fid) ;
 
 
-tankmaxo=0.85*b-6.048;
-bout=b-6.048;
+tankmaxo=0.85*b-8.64;
+bout=b-8.64;
 frac=tankmaxo/bout;
 chordtankmax=Geom(2,4)-(Geom(2,4)-Geom(3,4))*frac;
 chordkink=Geom(2,4);
@@ -36,10 +36,10 @@ for i = ceil(length(Coor)/2):(length(Coor))
     crefout(i-97)=abs(crefout(i-98)-Coor(1,i+1)*chordkink+Coor(1,i+1)*chordtankmax);
     dout(i-97)=sqrt(crefout(i-97)^2+bout^2);
 
-    crefin(1)=6.048*tan(LEsweep);
-    din(1)=sqrt((crefin(1))^2+6.048^2);
+    crefin(1)=8.64*tan(LEsweep);
+    din(1)=sqrt((crefin(1))^2+8.64^2);
     crefin(i-97)=abs(crefin(i-98)-Coor(1,i+1)*chordroot+Coor(1,i+1)*chordkink);
-    din(i-97)=sqrt(crefin(i-97)^2+6.048^2);
+    din(i-97)=sqrt(crefin(i-97)^2+8.64^2);
 end
 
 for i = 1:length(Coor)
