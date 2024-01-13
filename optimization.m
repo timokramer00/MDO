@@ -7,8 +7,8 @@ clc
 x0 = ones(1,21);
 
 %bounds
-lb = [0.6,0.6,0.6,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.5,0.5,0.3];
-ub = [1.6,1.5,1.33,2.5,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.4,1.1,1.1,1.5,1.5,1.5];
+lb = [0.6,0.5,0.6,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.9,0.9,0.5,0.5,0.5];
+ub = [1.4,1.3,1.33,2,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.7,1.1,1.1,1.5,1.5,1.5];
 
 
 
@@ -19,18 +19,18 @@ options = optimset('fmincon');
 options.Display         = 'iter-detailed';
 options.Algorithm       = 'sqp';
 options.FunValCheck     = 'off';
-options.DiffMinChange   = 1e-2;         % Minimum change while gradient searching
+options.DiffMinChange   = 0.03;         % Minimum change while gradient searching
 options.DiffMaxChange   = 1e-1;         % Maximum change while gradient searching
-options.TolCon          = 5e-4;         % Maximum difference between two subsequent constraint vectors [c and ceq]
+options.TolCon          = 5e-3;         % Maximum difference between two subsequent constraint vectors [c and ceq]
 options.TolFun          = 5e-4;         % Maximum difference between two subsequent objective value
-options.TolX            = 1e-8;         % Maximum difference between two subsequent design vectors
+options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
 %options.PlotFcns         = {@optimplotfval};
-options.FinDiffType     ='central';
-options.MaxIter         = 40;           % Maximum iterations
+%options.FinDiffType     ='central';
+options.MaxIter         = 60;           % Maximum iterations
 
 tic;
 [x,FVAL,EXITFLAG,OUTPUT] = fmincon(@(x) objective(x),x0,[],[],[],[],lb,ub,@(x) constraints_IDF_coup(x),options);
 t=toc;
 
 %optionally, call the objective again with the optimum values for x
-[f,vararg] = objective(x)
+[f] = objective(x)

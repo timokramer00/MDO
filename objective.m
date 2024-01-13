@@ -1,4 +1,4 @@
-function [f,vararg] = objective(x)
+function [f] = objective(x)
 %UNTITLED Summary of this function goes here
 %objective(ones(1,21))
 
@@ -37,7 +37,7 @@ Wstr=(Structures(b,cr,TRi,TRo,[Au0,Au1,Au2,Au3,Au4,Au5,Al0,Al1,Al2,Al3,Al4,Al5],
 
 global couplings;
     
-vararg = {Wfuel,Wfuel_init,LD,LD_init,Wstr,Wstr_init};
+%vararg = {Wfuel,Wfuel_init,LD,LD_init,Wstr,Wstr_init};
 couplings.Wfuel = Wfuel;
 couplings.LD = LD;
 couplings.Wstr = Wstr;

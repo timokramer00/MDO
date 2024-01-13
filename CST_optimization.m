@@ -28,15 +28,16 @@ Aupp_vect=x(1:M_break);
 Alow_vect=x(1+M_break:end);
 [Xtu,Xtl,C,Thu,Thl,Cm] = D_airfoil2(Aupp_vect,Alow_vect,X_vect);
 
-hold on
-plot(Xtu(:,1),Xtu(:,2),'b');    %plot upper surface coords
-plot(Xtl(:,1),Xtl(:,2),'b');    %plot lower surface coords
+% hold on
+% plot(Xtu(:,1),Xtu(:,2),'b');    %plot upper surface coords
+% plot(Xtl(:,1),Xtl(:,2),'b');    %plot lower surface coords
 % plot(X_vect,C,'r');                  %plot class function
 axis([0,1,-1.5,1.5]);
 
 
-fid= fopen('withcomb135.dat','r'); % Filename can be changed as required
+fid= fopen('airfoil1.dat','r'); % Filename can be changed as required
 Coor = fscanf(fid,'%g %g',[2 Inf]) ; 
 fclose(fid) ; 
 
 plot(Coor(1,:),Coor(2,:),'rx')
+axis([0,1,-1.5,1.5]);

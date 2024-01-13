@@ -6,7 +6,7 @@ function[error] = CST_objective(x)
 
 % Define the Airfoil coordinates
 % Read-in the Airfoil coordinate file
-fid= fopen('withcomb135.dat','r'); % Filename can be changed as required
+fid= fopen('airfoil1.dat','r'); % Filename can be changed as required
 Coor = fscanf(fid,'%g %g',[2 Inf]) ; 
 fclose(fid) ; 
 
