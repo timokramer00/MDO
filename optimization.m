@@ -24,7 +24,7 @@ options.DiffMaxChange   = 1e-1;         % Maximum change while gradient searchin
 options.TolCon          = 5e-3;         % Maximum difference between two subsequent constraint vectors [c and ceq]
 options.TolFun          = 5e-4;         % Maximum difference between two subsequent objective value
 options.TolX            = 1e-6;         % Maximum difference between two subsequent design vectors
-%options.PlotFcns         = {@optimplotfval};
+options.PlotFcns         = {@optimplotx,@optimplotfval,@optimplotfirstorderopt,@plotConstraints};
 %options.FinDiffType     ='central';
 options.MaxIter         = 60;           % Maximum iterations
 
