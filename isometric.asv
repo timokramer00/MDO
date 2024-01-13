@@ -1,0 +1,28 @@
+
+% Ncoeff = width(A)/2;
+% Au = A(1:Ncoeff);
+% Al = A((Ncoeff+1):end);
+global couplings;
+
+Au = couplings.Au;
+Al = couplings.Al;
+croot = couplings.chordroot;
+ckink = couplings.chordkink;
+%Chord = couplings.Chord;
+
+
+% disp(croot);
+% disp(ckink);
+% disp(Chord)
+
+Chrod
+
+X_airfoilplot = linspace(0, 1, 100)';
+[Xtu,Xtl] = D_airfoil2(Au,Al,X_airfoilplot);
+hold on
+plot(Xtu(1:end,1).*Chord, Xtu(1:end,2).*Chord, color)
+
+plot(Xtl(1:end,1).*Chord, Xtl(1:end,2).*Chord, color)
+axis equal;
+xlabel("x-coordinate [m]");
+ylabel("z-coordinate [m]");

@@ -30,20 +30,24 @@ AC.Visc  = 1;              % 0 for inviscid and 1 for viscous analysis
 
 MACin=cr*(2/3)*((1+TRi+TRi^2)/(1+TRi));
 MACout=cr*TRi*(2/3)*((1+TRo+TRo^2)/(1+TRo));
-MAC=(MACin+MACout)/2;
+MAC=(MACin+MACout)/2
 
 
 A=((AC.Wing.Geom(1,4)+AC.Wing.Geom(2,4))*AC.Wing.Geom(2,2))/2+((AC.Wing.Geom(2,4)+AC.Wing.Geom(3,4))*AC.Wing.Geom(3,2))/2;
 AC.Aero.V     = a*Mcruise;            % flight speed (m/s)
 AC.Aero.rho   = rho;         % air density  (kg/m3)
 AC.Aero.alt   = hcruise;             % flight altitude (m)
-AC.Aero.Re    = (AC.Aero.V*MAC)/nu;        % reynolds number (bqased on mean aerodynamic chord)
+AC.Aero.Re    = (AC.Aero.V*MAC)/nu;       % reynolds number (bqased on mean aerodynamic chord)
 AC.Aero.M     = Mcruise;           % flight Mach number
 MTOW = WAW + Wfuel + Wstr;
 L = sqrt(MTOW*(MTOW-Wfuel));
-AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2);% lift coefficient - comment this line to run the code for given alpha%
+AC.Aero.CL    = L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2) % lift coefficient - comment this line to run the code for given alpha%
 %AC.Aero.Alpha = 2;             % angle of attack -  comment this line to run the code for given cl 
 
+disp(a*Mcruise);
+disp(hcruise);
+disp((AC.Aero.V*MAC)/nu);
+disp(L/(0.5*AC.Aero.rho*2*A*AC.Aero.V^2));
 
 %% 
 Res = Q3D_solver(AC);

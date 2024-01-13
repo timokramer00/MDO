@@ -1,0 +1,33 @@
+% Open the first file and read coordinates
+fid1 = fopen('Cl_values_initial_design.dat', 'r');
+Coor1 = fscanf(fid1, '%g %g', [2 Inf]);
+fclose(fid1);
+
+% Open the second file and read coordinates
+fid2 = fopen('Cl_values_optimised_design.dat', 'r');
+Coor2 = fscanf(fid2, '%g %g', [2 Inf]);
+fclose(fid2);
+
+old_span = 21.6;
+new_span = 24.4192;
+
+old_span_list = linspace(0,old_span,100);
+new_span_list = linspace(0,new_span,100);
+
+% Plot the first airfoil with red crosses
+figure;
+plot(Coor1(1, :), Coor1(2, :), 'r-', 'DisplayName', 'Initial Cl design');
+hold on;
+
+% Plot the second airfoil with a blue continuous line
+plot(Coor2(1, :), Coor2(2, :), 'b-', 'DisplayName', 'Optimised Cl design');
+
+% Set plot limits
+axis([0, 1, -1.5, 1.5]);
+
+% Add legend
+legend('Location', 'Best');
+xlabel('X-coordinate');
+ylabel('Y-coordinate');
+title('Design Cl Comparison');
+grid on;

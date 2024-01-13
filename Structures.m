@@ -28,12 +28,12 @@ M=[Ms(1),M,Ms(2)];
 %MTOW=165000*9.81;
 %MEW=94600*9.81;
 
-% X_planf=[Geom(1,4),Geom(1,1),Geom(2,1), Geom(3,1),Geom(3,1)+Geom(3,4),Geom(2,1)+Geom(2,4), Geom(2,1), Geom(2,1)+Geom(2,4), Geom(1,4)];
-% Y_planf=[Geom(1,2),Geom(1,2),Geom(2,2), Geom(3,2),Geom(3,2), Geom(2,2), Geom(2,2),Geom(2,2), Geom(1,2)];
-% figure 
-% plot (Y_planf,X_planf)
-% axis equal
-% axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
+X_planf=[Geom(1,4),Geom(1,1),Geom(2,1), Geom(3,1),Geom(3,1)+Geom(3,4),Geom(2,1)+Geom(2,4), Geom(2,1), Geom(2,1)+Geom(2,4), Geom(1,4)];
+Y_planf=[Geom(1,2),Geom(1,2),Geom(2,2), Geom(3,2),Geom(3,2), Geom(2,2), Geom(2,2),Geom(2,2), Geom(1,2)];
+figure 
+plot (Y_planf,X_planf)
+axis equal
+axis([min(Y_planf)-1 max(Y_planf)+1 min(X_planf)-1 max(X_planf)+1])
 get_airfoil(berncoef(1:6),berncoef(7:12))
 
 fid = fopen('IL62.load', 'wt');
@@ -75,3 +75,6 @@ Wstr=str2double(Wstring(2));
 
 fclose(fid);
 
+global couplings;
+couplings.X_planf = X_planf;
+couplings.Y_planf = Y_planf;

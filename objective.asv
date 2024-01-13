@@ -7,7 +7,7 @@ function [f] = objective(x)
 %Design vector x = [b,  ̃cr ,  ̃ψk,r ,  ̃ψt,k,  ̃Au0,  ̃Au1,  ̃Au2,  ̃Au3,
 x0 = [21.6,10.32,0.69,0.39,   0.2337, 0.0796,0.2683, 0.0887, 0.2789, 0.3811, -0.2254, -0.1634, -0.0470,-0.4771, 0.0735, 0.3255,0.75, 12009.12, 70400*9.81, 16, 19237.1*9.81];
 %̃Au4,  ̃Au5,  ̃Al0, l1,  ̃Al2,  ̃Al3,  ̃Al4,  ̃Al5,  ̃Mcruise,  ̃hcruise,  ̃Wfuel,  ̃L/D,  ̃Wstr,wing]
-b = x(1)*x0(1)
+b = x(1)*x0(1);
 cr = x(2)*x0(2);
 TRi = x(3)*x0(3);
 TRo = x(4)*x0(4);
@@ -47,5 +47,5 @@ couplings.Wstr = Wstr;
 f=Wfuel;
 
 couplings.Au = Au;
-couplings.Al = Al;
+couplings.Al = Al
 end

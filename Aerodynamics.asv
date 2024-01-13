@@ -4,10 +4,10 @@ function LD = Aerodynamics(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise)
 Res=Q3D_Aero(b,cr,TRi,TRo,berncoef,hcruise,Wstr,Wfuel,Mcruise);
 
 %Q3D_Loads
-WAW=92985*9.81; %kg
-LEsweep=atan((cr-cr*TRi)/6.048);
+%WAW=92985*9.81; %kg
+LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
-      6.048*tan(LEsweep)  6.048   0     cr*TRi+0.001         0;
+      8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
 Y=Res.Wing.Yst;
 [T,a,P,rho] = atmosisa(hcruise);
@@ -15,7 +15,7 @@ V=a*Mcruise;
 Cl=Res.Wing.cl;
 Cd=Res.Wing.cdi;
 Chord=Res.Wing.chord;
-LDref=16;
+%LDref=16;
 A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2;
 
 
@@ -23,9 +23,10 @@ A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2
 qref=0.5*0.3104*221.3022^2;
 q=0.5*rho*V^2;
 qratio=q/qref;
-CDaw=0.025*qratio;
+CDaw=0.0187*qratio
 
-
+L=zeros(1,length(Cl));
+D=zeros(1,length(Cl));
 
 for i = 1:length(Cl)
     if i == 1
@@ -46,7 +47,8 @@ for i = 1:length(Cl)
 end
 CLwing=sum(L)/(0.5*rho*V^2*A);
 CDwing=sum(D)/(0.5*rho*V^2*A);
-%CDaw=(CLwing/LDref)-CDwing;
-LD=(CLwing)/(CDwing+CDaw);
+%CDaw=(CLwing/LDref)-CDwing
+LD=(CLwing)/(CDwing+CDaw)
+Daw=0.5*rho*V^2*CDaw*(c1+c2)*(w)/2
 
 

@@ -13,7 +13,7 @@ eta = exp(-(((Vcruise -Vcruiseref)^2)/(2*70^2))-((hcruise-hcruiseref)^2/(2*2500^
 CT = CTdash/eta;
 
 weightratio = exp((R*CT)/(Vcruise*LD));
-MTOW = WAW + Wfuel + Wstr;
+MTOW = WAW + Wfuel + Wstr
 
 out = (1-0.938/weightratio)*MTOW;
 end

@@ -46,8 +46,25 @@ for i = 1:length(Cl)
     
 end
 CLwing=sum(L)/(0.5*rho*V^2*A);
-CDwing=sum(D)/(0.5*rho*V^2*A);
+CDwing=sum(D)/(0.5*rho*V^2*A)
 %CDaw=(CLwing/LDref)-CDwing
 LD=(CLwing)/(CDwing+CDaw);
 
+Daw=0.5*rho*V^2*CDaw*(c1+c2)*(w)/2;
+
+global couplings;
+
+couplings.Chord = Chord;
+
+
+    % Cl_values = zeros(1, length(Cl));
+    % Cd_values = zeros(1, length(Cd));
+    % 
+    % for i = 1:length(Cl)
+    %     Cl_values(i) = Cl(i)*Chord(i);
+    %     Cd_values(i) = Cd(i)*Chord(i);
+    % end
+    % 
+    % save('Cl_values_optimised_design.dat', 'Cl_values', '-ascii');
+    % save('Cd_values_optimised_design.dat', 'Cd_values', '-ascii');
 

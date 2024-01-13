@@ -41,7 +41,7 @@ cc3 = Wfuel/Wfuel_init - 1;
 %finding the cruise CL
 %Q3D_Loads
 WAW=75362.9*9.81; %N
-LEsweep=atan((cr-cr*TRi)/8.64)
+LEsweep=atan((cr-cr*TRi)/8.64);
 Geom=[0     0     0     cr         0;
       8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
@@ -50,16 +50,16 @@ Geom=[0     0     0     cr         0;
 
 V=a*Mcruise;
 A=((Geom(1,4)+Geom(2,4))*Geom(2,2))/2+((Geom(2,4)+Geom(3,4))*(Geom(3,2)-Geom(2,2)))/2
-MTOW = WAW + Wfuel + Wstr;
+MTOW = WAW + Wfuel + Wstr
 L = sqrt(MTOW*(MTOW-Wfuel));
 CLcruise=L/(0.5*rho*V^2*A*2);
 
 %tank volume calculations
 rho_fuel = 817.15;
 f_tank = 0.93;
-V_fuel = (Wfuel/9.81)/rho_fuel
+V_fuel = (Wfuel/9.81)/rho_fuel;
 
-V_tank = getvolume(cr,TRi,TRo,b)*2
+V_tank = getvolume(cr,TRi,TRo,b)*2;
 
 
 x=tan(LEsweep)*b;
@@ -72,8 +72,8 @@ qcsweep = atand(refvalue/b);
 c1 = (CLcruise*1.3)/(0.86*cosd(qcsweep))-1;
 c2 = (V_fuel-5)/(V_tank*f_tank)-1; 
 c3 = ((MTOW/9.81)/(A*2))/(165000/278.987052)-1;
-wing_loading = MTOW/(A*2)
-AR = b^2 /(A*2)
+wing_loading = MTOW/(A*2);
+AR = b^2 /(A*2);
 
 c = [c1,c2,c3]
 ceq = [cc1,cc2,cc3]
