@@ -1,6 +1,6 @@
 function[Vtank] = getvolume(cr,TRi,TRo,b)
 
-LEsweep=atan((cr-cr*TRi)/8.64);
+LEsweep=atan((cr-cr*TRi)/8.64)
 Geom=[0     0     0     cr         0;
       8.64*tan(LEsweep)  8.64   0     cr*TRi+0.001         0;
       b*tan(LEsweep)  b  0  (cr*TRi)*TRo  0];
